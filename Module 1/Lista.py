@@ -13,4 +13,3 @@ colors2.reverse() #reverses the elements
 print(colors2[-1])#acessing the last element of the list 
 print(colors2)
 print(colors_list)
-
