@@ -9,7 +9,7 @@ class Rectangle:
     def calculate_perimeter(self):
         return 2 * (self.length + self.width)
 
-my_rectangle = Reactangle(2 ,5)
+my_rectangle = Rectangle(2 ,5)
 
 area = my_rectangle.calculate_area()
 perimeter = my_rectangle.calculate_perimeter()
