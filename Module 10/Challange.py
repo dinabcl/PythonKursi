@@ -88,4 +88,4 @@ class DS_Prishtina(DigitalSchool):
 
         def organize_hackathon(self): pass #overrride the method
 
-        #REDO 
+        #REDO
