@@ -1,17 +1,18 @@
+
+
 import pandas as pd
 import matplotlib.pyplot as plt
 
 #getting data from file
 df=pd.read_csv("avgIQpercountry.csv")
 
+avg_iq=df.groupby("Continent")["Average IQ"].mean()
+
 plt.figure(figsize=(10,6))
-plt.scatter(df["Mean years of schooling - 2021"],df["Average IQ"], color="purple",alpha=0.7)
 
-plt.title("Scatter plot of mean years Of schooling vs IQ")
+avg_iq.plot(kind="line",marker="o",color="skyblue")
 
-plt.xlabel("Mean years of schooling")
-
+plt.title("Average IQ by Continent")
+plt.xlabel("Continent")
 plt.ylabel("Average IQ")
-
-plt.grid(True, linestyle="--", alpha=0.7)
 plt.show()
