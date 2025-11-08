@@ -27,7 +27,7 @@ class Person(ABC):
     def calculate_bmi(self):
         pass
 
-    def get_bmi_category(self):
+    def get_bmi_category(self,adult_bmi):
         pass
 
     def print_info(self):
@@ -44,7 +44,7 @@ class Adult(Person):
         adult_bmi = self._weight/self._height
         return adult_bmi
 
-    def get_bmi_category(self,adult_bmi):
+    def get_bmi_category(self,adult_bmi,):
         if adult_bmi < 18.5:
             return "Underweight"
         elif 18.5 < adult_bmi < 24.9:
@@ -80,19 +80,19 @@ class Child(Person):
 
 
 class BmiApp(Person):
-    def __init__(self, name, age, weight, height,list):
-        super().__init__(self)
+    def __init__(self, name, age, weight, height):
+        super().__init__(name,age,weight,height)
         self.people = []
 
 
-    def add_person(self,Person):
-        list.append()
+    def add_person(self,person):
+        self.people.append(person)
 
     def collect_user_details(self):
-        name = input("Whats your name?")
-        age = int(input("Whats your age?"))
-        weight = int(input("Whats your weight?"))
-        height = int(input("Whats your height?"))
+        self.name = input("Whats your name?")
+        self.age = int(input("Whats your age?"))
+        self.weight = float(input("Whats your weight?"))
+        self.height = float(input("Whats your height?"))
         if self.age.add_person(self) <18:
             return Child.calculate_bmi()
         else:
