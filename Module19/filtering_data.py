@@ -33,6 +33,24 @@ if submit_button:
     books_df.to_csv('bestsellers_with_categories_2022_03_27.csv', index=False)
     st.sidebar.success("New book added successfully!")
 
+st.sidebar.header("Filter Options")
+selected_author = st.sidebar.selectbox("Select Author", ["All"] + list(books_df['Author'].unique()))
+selected_year = st.sidebar.selectbox("Select Year", ["All"] + list(books_df['Year'].unique()))
+selected_genre = st.sidebar.selectbox("Select Genre", ["All"] + list(books_df['Genre'].unique()))
+min_rating = st.sidebar.slider("Minimum User Rating", 0.0, 0.5, 0.0, 0.1)
+max_price = st.sidebar.slider("Maximum Price", 0, books_df['Price'].max(), books_df['Price'].max())
+
+
+filtered_books_df = books_df.copy()
+
+if selected_author != "All":
+    filtered_books_df = filtered_books_df[filtered_books_df['Author'] == selected_author]
+if selected_year != 'All':
+    filtered_books_df = filtered_books_df[filtered_books_df['Year'] == int(selected_year)]
+if selected_genre != 'All':
+    filtered_books_df = filtered_books_df[filtered_books_df['Genre'] == selected_genre]
+filtered_books_df = filtered_books_df[(filtered_books_df['User Rating'] >= min_rating) & (filtered_books_df['Price'] <=max_price)]
+
 st.subheader('Summery Statistics')
 total_books = books_df.shape[0]
 unique_titles = books_df['Name'].nunique()
@@ -46,7 +64,7 @@ col3.metric("Average Rating", f'{average_rating:.2f}')
 col4.metric("Average Price",f'${average_price:.2f}')
 
 st.subheader("Dataset Preview")
-st.write(books_df.head())
+st.write(filtered_books_df.head())
 
 col1, col2 = st.columns(2)
 with col2:
@@ -78,3 +96,4 @@ st.subheader('Filter Data by Genre')
 genre_filter = st.selectbox('Select Genre', books_df['Genre'].unique())
 filter_df = books_df[books_df['Genre'] == genre_filter]
 st.write(filter_df)
+
