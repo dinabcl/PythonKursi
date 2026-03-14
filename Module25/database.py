@@ -1,4 +1,7 @@
 import sqlite3
+
+from Module24.database import connection
+from Module24.joinexample import cursor
 from models import Movie, MovieCreate
 
 def create_connection():
@@ -62,4 +65,15 @@ def update_movie(movie_id, movie: MovieCreate) -> bool:
     cursor.execute('''
         update movies set title = ?, director = ? where id = ?
     ''', (movie.title, movie.director, movie_id ))
-    rowcount
+    connection.close()
+    updated = cursor.rowcount
+    connection.close()
+    return  updated > 0
+
+def delete_movie(movie_id: int) -> bool:
+    connection = create_connection()
+    cursor = connection.cursor()
+    cursor.execute('delete from movies where id =?', (movie_id, ))
+    deleted = cursor.rowcount
+    connection.close()
+    return deleted > 0
