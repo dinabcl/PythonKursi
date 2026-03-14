@@ -1,7 +1,4 @@
-import sqlite3
-
-from Module24.database import connection
-from Module24.joinexample import cursor
+import sqlite34e
 from models import Movie, MovieCreate
 
 def create_connection():

@@ -1,5 +1,4 @@
 from typing import Optional, Any, List, Union
-
 from numpy.ma.core import append
 
 
